@@ -1,1 +1,12 @@
-
+{
+  "name": "connectly-api",
+  "version": "1.0.0",
+  "description": "Individual implementation of Connectly API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
