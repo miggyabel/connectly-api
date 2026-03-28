@@ -3,7 +3,7 @@
 
 
 
-**Endpoint:** `POST /api/auth/google/login/`
+Endpoint: `POST /api/auth/google/login/`
 ```json
 {
   "status": "200 OK",
