@@ -89,7 +89,7 @@ class Like(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('user', 'post') # Isang like lang per user per post
+        unique_together = ('user', 'post') 
 
 
 class Comment(models.Model):
