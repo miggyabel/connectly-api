@@ -1,4 +1,4 @@
-const app = require('./app_enhanced'); // Dito natin tinatawag yung bagong logic
+const app = require('./app_enhanced'); // 
 const PORT = 5000;
 
 app.listen(PORT, () => {
