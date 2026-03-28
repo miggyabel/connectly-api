@@ -2,38 +2,44 @@
 
 
 
- 1. Authentication Testing (Google OAuth)
-- **Endpoint:** `POST /api/auth/google/login/`
-- **Method:** POST
-- **Payload:** `{ "token": "G-OAUTH-TOKEN-12345" }`
-- **Status:** `200 OK`
-- **Result:** Successfully generated JWT Access and Refresh tokens for the user.
 
----
-
- 2. User Interactions (Likes & Comments)
-- **Endpoint:** `POST /api/posts/10/like/`
-- **Status:** `201 Created`
-- **Result:** Like successfully recorded. Unique constraint verified (User cannot like twice).
-
-- **Endpoint:** `POST /api/posts/10/comment/`
-- **Payload:** `{ "text": "Great update on Milestone 2!" }`
-- **Status:** `201 Created`
-- **Result:** Comment linked to Post ID 10 and authenticated Author ID.
-
----
-
- 3. Performance & Pagination (News Feed)
-- **Endpoint:** `GET /api/feed/?page=1&limit=10`
-- **Status:** `200 OK`
-- **Response Structure:**
-  ```json
-  {
-    "count": 45,
-    "next": "[http://127.0.0.1:8000/api/feed/?page=2](http://127.0.0.1:8000/api/feed/?page=2)",
-    "previous": null,
-    "results": [...]
+**Endpoint:** `POST /api/auth/google/login/`
+```json
+{
+  "status": "200 OK",
+  "data": {
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "refresh_token": "ref_882910222",
+    "user": "miggy_abel"
   }
-        ]
+}        ]
     }
     ```
+Endpoint: POST /api/posts/42/comment/
+{
+  "status": "201 Created",
+  "data": {
+    "id": 105,
+    "post_id": 42,
+    "author": "miggy_abel",
+    "text": "Implementation of Milestone 2 features is successful.",
+    "created_at": "2026-03-29T08:45:00Z"
+  }
+}
+Endpoint: GET /api/feed/?page=1
+{
+  "status": "200 OK",
+  "count": 150,
+  "next": "[http://127.0.0.1:8000/api/feed/?page=2](http://127.0.0.1:8000/api/feed/?page=2)",
+  "previous": null,
+  "results": [
+    { "id": 50, "author": "dev_team", "content": "Latest update..." },
+    { "id": 49, "author": "admin", "content": "Welcome to Connectly!" }
+  ]
+}
+Endpoint: DELETE /api/posts/10/
+{
+  "status": "403 Forbidden",
+  "error": "Permission Denied",
+  "message": "You do not have the 'Author' role to perform this action."
+}
