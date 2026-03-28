@@ -2,8 +2,7 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
-// --- DESIGN PATTERN: SINGLETON ---
-// Sinisiguro nito na iisang instance lang ng Database ang tumatakbo sa buong app.
+
 const Database = (function () {
     let instance;
     function createInstance() {
@@ -24,7 +23,7 @@ const Database = (function () {
 })();
 
 // --- SECURITY ENHANCEMENT: API KEY AUTHENTICATION ---
-// Middleware: Haharangin nito ang request kung walang tamang API Key sa header.
+
 const authenticate = (req, res, next) => {
     const apiKey = req.headers['x-api-key'];
     if (apiKey === 'admin123') {
